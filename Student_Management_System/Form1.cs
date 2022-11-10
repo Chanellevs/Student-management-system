@@ -57,6 +57,7 @@ namespace Student_Management_System
                     FormMain formMain = new FormMain();
                     this.Hide();
                     formMain.Show();
+                    Console.WriteLine("Build Successfull");
                 }
                 else
                 {

@@ -10,31 +10,37 @@ namespace Student_Management_System
 {
     internal class FileHandeler
     {
-        private string filePath = "D:\\Student_Project\\Student-management-system";
-        List<AdminData> usersList = new List<AdminData>();
+        private List<AdminData> usersList = new List<AdminData>();
+
+        //Creating a file Path
+        public string pathConnection()
+        {
+            string directory = Environment.CurrentDirectory;
+            string Newpath = Path.GetFileName(Path.Combine(directory, @"UserDetails.txt"));
+            return Newpath;
+        }
         public void fileWrite(string userName, string password)
         {
             try
             {
                 //Creating File path 
-                FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write);
+                FileStream fileStream = new FileStream(pathConnection(), FileMode.OpenOrCreate, FileAccess.Write);
 
                 //Validation of streamwriter
-                if (!File.Exists(filePath))
+                if (!File.Exists(pathConnection()))
                 {
-                    using (TextWriter riter = File.CreateText(filePath))
+                    using (TextWriter riter = File.CreateText(pathConnection()))
                     {
                         riter.WriteLine(userName + "," + password);
                         Console.WriteLine("File Successfully written too");
                     }
                 }
-                else if (File.Exists(filePath))
+                else if (File.Exists(pathConnection()))
                 {
-                    using (TextWriter riter = File.AppendText(filePath))
+                    using (TextWriter riter = File.AppendText(pathConnection()))
                     {
                         riter.WriteLine(userName + "," + password);
                         Console.WriteLine("File Successfully Written too");
-                        riter.Close();
                     }
                 }
             }
@@ -47,12 +53,11 @@ namespace Student_Management_System
 
         public List<AdminData> fileRead()
         {
+            //Creating FilePath && Stream Reader
+            FileStream fileStream = new FileStream(pathConnection(), FileMode.Open, FileAccess.Read);
+            StreamReader readStream = new StreamReader(fileStream);
             try
             {
-                //Creating File path 
-                FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Read);
-                using (StreamReader readStream = new StreamReader(fileStream))
-                {
                     string line = readStream.ReadLine();
                     string[] userArr;
 
@@ -63,14 +68,20 @@ namespace Student_Management_System
                         Console.WriteLine(userArr);
                         line = readStream.ReadLine();
                     }
-                    readStream.Close();
                     return usersList;
-                }
             }
             catch (IOException e)
             {
                 Console.WriteLine(e.Message);
                 return usersList;
+            }
+            finally
+            {
+                using (readStream = new StreamReader(fileStream))
+                {
+                    if(readStream != null)
+                        readStream.Close();
+                }
             }
         }
     }
