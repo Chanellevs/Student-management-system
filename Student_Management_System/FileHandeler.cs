@@ -27,7 +27,7 @@ namespace Student_Management_System
             try
             {
                 if (File.Exists(pathConnection())){
-                    File.AppendAllText(pathConnection(), tempString);
+                    File.AppendAllText(pathConnection(), (tempString + Environment.NewLine));
                 }
                 else//if there is no file 
                 {

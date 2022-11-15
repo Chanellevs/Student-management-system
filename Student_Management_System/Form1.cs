@@ -72,6 +72,7 @@ namespace Student_Management_System
             handler.fileWrite(username, password);
             txtPassword.Clear();
             txtUsername.Clear();
+            MessageBox.Show("User has been created!");
         }
     }
 }
