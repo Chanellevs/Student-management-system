@@ -49,7 +49,7 @@ namespace Student_Management_System
             //Get Values from the text file 
             userList = handler.fileRead();
 
-            //each value must now be compared
+            //Validation of username && password.
             foreach (AdminData user in userList)
             {
                 if (username == user.Username && password == user.Password)
@@ -65,7 +65,7 @@ namespace Student_Management_System
                 }
             }
         }
-
+        //Adding new user.?
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
             FileHandeler handler = new FileHandeler();

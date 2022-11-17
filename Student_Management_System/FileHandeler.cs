@@ -21,6 +21,7 @@ namespace Student_Management_System
             string Newpath = Path.GetFileName(Path.Combine(directory, @"UserDetails.txt"));
             return Newpath;
         }
+        //Write to file.
         public void fileWrite(string userName, string password)
         {
             string tempString = userName + "," + password;
@@ -40,7 +41,7 @@ namespace Student_Management_System
                 MessageBox.Show(ex.Message);
             }
         }
-
+        //Read from file into list.
         public List<AdminData> fileRead()
         {
             //Creating FilePath && Stream Reader
