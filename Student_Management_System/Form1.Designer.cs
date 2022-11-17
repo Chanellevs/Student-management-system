@@ -35,6 +35,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnCreateUser = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -73,7 +74,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(161, 292);
+            this.btnClear.Location = new System.Drawing.Point(210, 292);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(107, 39);
             this.btnClear.TabIndex = 4;
@@ -101,11 +102,22 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnCreateUser
+            // 
+            this.btnCreateUser.Location = new System.Drawing.Point(19, 399);
+            this.btnCreateUser.Name = "btnCreateUser";
+            this.btnCreateUser.Size = new System.Drawing.Size(137, 38);
+            this.btnCreateUser.TabIndex = 7;
+            this.btnCreateUser.Text = "Create User";
+            this.btnCreateUser.UseVisualStyleBackColor = true;
+            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 450);
+            this.Controls.Add(this.btnCreateUser);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btnClear);
@@ -129,6 +141,7 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnCreateUser;
     }
 }
 

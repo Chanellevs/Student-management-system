@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Student_Management_System
 {
@@ -21,33 +23,21 @@ namespace Student_Management_System
         }
         public void fileWrite(string userName, string password)
         {
+            string tempString = userName + "," + password;
             try
             {
-                //Creating File path 
-                FileStream fileStream = new FileStream(pathConnection(), FileMode.OpenOrCreate, FileAccess.Write);
-
-                //Validation of streamwriter
-                if (!File.Exists(pathConnection()))
-                {
-                    using (TextWriter riter = File.CreateText(pathConnection()))
-                    {
-                        riter.WriteLine(userName + "," + password);
-                        Console.WriteLine("File Successfully written too");
-                    }
+                if (File.Exists(pathConnection())){
+                    File.AppendAllText(pathConnection(), (tempString + Environment.NewLine));
                 }
-                else if (File.Exists(pathConnection()))
+                else//if there is no file 
                 {
-                    using (TextWriter riter = File.AppendText(pathConnection()))
-                    {
-                        riter.WriteLine(userName + "," + password);
-                        Console.WriteLine("File Successfully Written too");
-                    }
+                    File.CreateText(pathConnection());
+                    File.WriteAllText(pathConnection(), tempString);
                 }
             }
-            catch (IOException e)
+            catch (IOException ex)
             {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("File Write Not SuccessFull");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -72,7 +62,7 @@ namespace Student_Management_System
             }
             catch (IOException e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show(e.Message);
                 return usersList;
             }
             finally

@@ -65,5 +65,14 @@ namespace Student_Management_System
                 }
             }
         }
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            FileHandeler handler = new FileHandeler();
+            handler.fileWrite(username, password);
+            txtPassword.Clear();
+            txtUsername.Clear();
+            MessageBox.Show("User has been created!");
+        }
     }
 }
